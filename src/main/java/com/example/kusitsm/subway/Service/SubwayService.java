@@ -7,8 +7,4 @@ import org.json.simple.parser.ParseException;
 public interface SubwayService {
     RouteInfo getSubwayCode(String startStation, String endStation) throws Exception;
     String[] fetch(String url) throws JsonProcessingException, ParseException;
-
-
-
-
 }

@@ -6,7 +6,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 public class OperationInfoDetail {
 
     private String FACI_NM;

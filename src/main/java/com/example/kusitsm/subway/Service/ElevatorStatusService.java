@@ -66,6 +66,5 @@ public class ElevatorStatusService {
         else operationInfo.setAvailabe(true);
 
         return operationInfo;
-        // 역 이름에 해당하는 엘리베이터 운행 상태 정보가 없을 경우 null 반환
     }
 }
