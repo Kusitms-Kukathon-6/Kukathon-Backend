@@ -34,17 +34,17 @@ public class SubwayServiceImpl implements SubwayService{
     private String CODEAPIKEY;
     @Override
     public RouteInfo getSubwayCode(String startStation, String endStation) throws Exception {
-            //시작 지점
-            String startUrl = "http://openAPI.seoul.go.kr:8088/" + CODEAPIKEY + "/json/SearchInfoBySubwayNameService/1/5/"+startStation+"/";
-            String[] startCode = fetch(startUrl);
-            firstStartCode = startCode[1];
-            log.info(startUrl);
-            //종료 지점
-            String endUrl = "http://openAPI.seoul.go.kr:8088/" + CODEAPIKEY + "/json/SearchInfoBySubwayNameService/1/5/"+endStation+"/";
-            String[] endCode = fetch(endUrl);
-            firstEndCode = endCode[0];
-            log.info(endUrl);
-            getRouteCode(firstStartCode, firstEndCode);
+        //시작 지점
+        String startUrl = "http://openAPI.seoul.go.kr:8088/" + CODEAPIKEY + "/json/SearchInfoBySubwayNameService/1/5/"+startStation+"/";
+        String[] startCode = fetch(startUrl);
+        firstStartCode = startCode[1];
+        log.info(startUrl);
+        //종료 지점
+        String endUrl = "http://openAPI.seoul.go.kr:8088/" + CODEAPIKEY + "/json/SearchInfoBySubwayNameService/1/5/"+endStation+"/";
+        String[] endCode = fetch(endUrl);
+        firstEndCode = endCode[0];
+        log.info(endUrl);
+        getRouteCode(firstStartCode, firstEndCode);
 
         return getRouteCode(firstStartCode, firstEndCode);
     }
