@@ -22,14 +22,12 @@ public class SubwayController {
     //스트링으로 역 -> 코드로 가져와서(API) -> API 요청(API) -> 반환
     @GetMapping("/route")
     public ResponseEntity<RouteInfo> getSubwayRoute(@RequestParam String startStation, @RequestParam String endStation) throws Exception {
-
         return new ResponseEntity<>(subwayService.getSubwayCode(startStation,endStation), HttpStatus.OK);
     }
 
     @CrossOrigin
     @GetMapping("/route/{station}")
     public ResponseEntity<OperationInfo> getSubwayOperationInfo(@PathVariable("station") String station) throws Exception {
-
         return new ResponseEntity<>(elevatorStatusService.getElevatorStatus(station), HttpStatus.OK);
     }
 

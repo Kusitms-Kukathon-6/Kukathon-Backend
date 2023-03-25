@@ -28,25 +28,25 @@ import java.net.URL;
 @Service
 @Slf4j
 public class SubwayServiceImpl implements SubwayService{
-    public String firstStartCode;
-    public String firstEndCode;
+
     @Value("${code.api.key}")
     private String CODEAPIKEY;
+
     @Override
     public RouteInfo getSubwayCode(String startStation, String endStation) throws Exception {
         //시작 지점
         String startUrl = "http://openAPI.seoul.go.kr:8088/" + CODEAPIKEY + "/json/SearchInfoBySubwayNameService/1/5/"+startStation+"/";
         String[] startCode = fetch(startUrl);
-        firstStartCode = startCode[1];
-        log.info(startUrl);
+        String firstStartCode = startCode[1];
+
         //종료 지점
         String endUrl = "http://openAPI.seoul.go.kr:8088/" + CODEAPIKEY + "/json/SearchInfoBySubwayNameService/1/5/"+endStation+"/";
         String[] endCode = fetch(endUrl);
-        firstEndCode = endCode[0];
-        log.info(endUrl);
-        getRouteCode(firstStartCode, firstEndCode);
+        String firstEndCode = endCode[0];
 
-        return getRouteCode(firstStartCode, firstEndCode);
+        RouteInfo routeInfo = getRouteCode(startCode[1], endCode[0]);
+
+        return routeInfo;
     }
 
     @Value("${code.routeApi.key}")
@@ -54,7 +54,7 @@ public class SubwayServiceImpl implements SubwayService{
     public RouteInfo getRouteCode(String firstStartCode, String firstEndCode) throws Exception {
 
         String urlInfo = "https://api.odsay.com/v1/api/subwayPath?lang=0&CID=1000&SID="+firstStartCode+"&EID="+firstEndCode+"&Sopt=2&apiKey=" + URLEncoder.encode(ROUTEKEY, "UTF-8");
-        log.info(urlInfo);
+
         URL url = new URL(urlInfo);
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();
         conn.setRequestMethod("GET");
@@ -81,7 +81,6 @@ public class SubwayServiceImpl implements SubwayService{
         ResponseEntity<Map> resultMap = restTemplate.exchange(url, HttpMethod.GET, entity, Map.class);
         ObjectMapper mapper = new ObjectMapper();
         String JsonString = mapper.writeValueAsString(resultMap.getBody());
-        System.out.println(JsonString);
 
         JSONObject jsonObject = new JSONObject(JsonString);
 

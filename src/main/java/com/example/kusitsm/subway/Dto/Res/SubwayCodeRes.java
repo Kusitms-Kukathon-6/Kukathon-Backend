@@ -18,8 +18,6 @@ public class SubwayCodeRes {
         public static class Result {
             private String CODE;
             private String MESSAGE;
-
-            // 생성자, getter/setter 생략
         }
 
         @Data
