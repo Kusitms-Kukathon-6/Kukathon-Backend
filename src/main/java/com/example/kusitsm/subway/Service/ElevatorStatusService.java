@@ -29,9 +29,29 @@ public class ElevatorStatusService {
         // 역 이름에 해당하는 엘리베이터 운행 상태 정보만 추출하여 반환
         for (int i = 0; i < rowArray.length(); i++) {
             JSONObject row = rowArray.getJSONObject(i);
+
             if ((row.getString("GUBUN").equals("EV")||row.getString("GUBUN").equals("WL"))&&row.getString("STATION_NM").contains(stationName)) {
                 OperationInfoDetail operationInfoDetail = new OperationInfoDetail(row.getString("FACI_NM"),row.getString("STUP_LCTN"),row.getString("LOCATION"),row.getString("USE_YN"),row.getString("GUBUN"));
                 operationInfo.getOperationInfoDetailList().add(operationInfoDetail);
+
+                String faci_NM = row.getString("FACI_NM");
+                if (faci_NM.contains("엘리베이터 내부")) {
+                    String location = row.getString("LOCATION");
+                    operationInfo.getInElv().add(location);
+                }
+                else if(faci_NM.contains("엘리베이터 외부")){
+                    String location = row.getString("LOCATION");
+                    operationInfo.getOutElv().add(location);
+                }
+                else if(faci_NM.contains("휠체어리프트 외부")){
+                    String location = row.getString("LOCATION");
+                    operationInfo.getOutWh().add(location);
+                }
+                else if(faci_NM.contains("휠체어리프트 내부")){
+                    String location = row.getString("LOCATION");
+                    operationInfo.getInWh().add(location);
+                }
+
             }
         }
 
