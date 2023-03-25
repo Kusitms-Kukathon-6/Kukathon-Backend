@@ -18,6 +18,7 @@ public class SubwayController {
     private final SubwayService subwayService;
     private final ElevatorStatusService elevatorStatusService;
 
+    @CrossOrigin
     //스트링으로 역 -> 코드로 가져와서(API) -> API 요청(API) -> 반환
     @GetMapping("/route")
     public ResponseEntity<RouteInfo> getSubwayRoute(@RequestParam String startStation, @RequestParam String endStation) throws Exception {
@@ -25,6 +26,7 @@ public class SubwayController {
         return new ResponseEntity<>(subwayService.getSubwayCode(startStation,endStation), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping("/route/{station}")
     public ResponseEntity<OperationInfo> getSubwayOperationInfo(@PathVariable("station") String station) throws Exception {
 
