@@ -1,15 +1,13 @@
 package com.example.kusitsm.subway.Dto.Res;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
+@Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class SubwayCodeReturn {
-    private int SID;
-    private int EID;
+    private String SID;
+    private String EID;
 }

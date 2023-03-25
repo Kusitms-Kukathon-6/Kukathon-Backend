@@ -13,7 +13,7 @@ public class OdsayApiKeyAuthSample {
         // ODsay Api Key 정보
         String apiKey = "J0aZ0NhWM1ev/IC0nPfX4Cebxz0ByTU+3xMOCBLTFDc";
 
-        String urlInfo = "https://api.odsay.com/v1/api/searchPubTransPathT?SX=126.9027279&SY=37.5349277&EX=126.9145430&EY=37.5499421&OPT=0&SearchPathType=1&lang=0&apiKey=" + URLEncoder.encode(apiKey, "UTF-8");
+        String urlInfo = "https://api.odsay.com/v1/api/subwayPath?lang=0&CID=1000&SID=239&EID=241&Sopt=1&apiKey=" + URLEncoder.encode(apiKey, "UTF-8");
 
         // http 연결
         URL url = new URL(urlInfo);

@@ -28,14 +28,14 @@ public class SubwayServiceImpl implements SubwayService{
     private String CODEAPIKEY;
     @Override
     public SubwayCodeReturn getSubwayCode(String startStation, String endStation) throws ParseException, JsonProcessingException {
-            //시작 지점
-            String startUrl = "http://openAPI.seoul.go.kr:8088/" + CODEAPIKEY + "/json/SearchInfoBySubwayNameService/1/5/"+startStation+"/";
-            String[] startCode = fetch(startUrl);
-            log.info(startUrl);
-            //종료 지점
-            String endUrl = "http://openAPI.seoul.go.kr:8088/" + CODEAPIKEY + "/json/SearchInfoBySubwayNameService/1/5/"+endStation+"/";
-            String[] endCode = fetch(endUrl);
-            log.info(endUrl);
+        //시작 지점
+        String startUrl = "http://openAPI.seoul.go.kr:8088/" + CODEAPIKEY + "/json/SearchInfoBySubwayNameService/1/5/"+startStation+"/";
+        String[] startCode = fetch(startUrl);
+        log.info(startUrl);
+        //종료 지점
+        String endUrl = "http://openAPI.seoul.go.kr:8088/" + CODEAPIKEY + "/json/SearchInfoBySubwayNameService/1/5/"+endStation+"/";
+        String[] endCode = fetch(endUrl);
+        log.info(endUrl);
 
         return null;
 
