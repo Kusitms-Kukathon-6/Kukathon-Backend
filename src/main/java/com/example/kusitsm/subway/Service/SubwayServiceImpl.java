@@ -54,7 +54,7 @@ public class SubwayServiceImpl implements SubwayService{
     public RouteInfo getRouteCode(String firstStartCode, String firstEndCode) throws Exception {
 
         String urlInfo = "https://api.odsay.com/v1/api/subwayPath?lang=0&CID=1000&SID="+firstStartCode+"&EID="+firstEndCode+"&Sopt=2&apiKey=" + URLEncoder.encode(ROUTEKEY, "UTF-8");
-
+        log.info(urlInfo);
         URL url = new URL(urlInfo);
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();
         conn.setRequestMethod("GET");
