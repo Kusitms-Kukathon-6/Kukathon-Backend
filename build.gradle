@@ -27,6 +27,7 @@ dependencies {
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     implementation 'org.json:json:20211205'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {

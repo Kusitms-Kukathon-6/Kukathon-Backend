@@ -1,6 +1,8 @@
 package com.example.kusitsm.subway.Controller;
 
+import com.example.kusitsm.subway.Dto.Res.OperationInfo;
 import com.example.kusitsm.subway.Dto.Res.RouteInfo;
+import com.example.kusitsm.subway.Service.ElevatorStatusService;
 import com.example.kusitsm.subway.Service.SubwayService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,12 +16,19 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class SubwayController {
     private final SubwayService subwayService;
+    private final ElevatorStatusService elevatorStatusService;
 
     //스트링으로 역 -> 코드로 가져와서(API) -> API 요청(API) -> 반환
     @GetMapping("/route")
     public ResponseEntity<RouteInfo> getSubwayRoute(@RequestParam String startStation, @RequestParam String endStation) throws Exception {
 
         return new ResponseEntity<>(subwayService.getSubwayCode(startStation,endStation), HttpStatus.OK);
+    }
+
+    @GetMapping("/route/{station}")
+    public ResponseEntity<OperationInfo> getSubwayOperationInfo(@PathVariable("station") String station) throws Exception {
+
+        return new ResponseEntity<>(elevatorStatusService.getElevatorStatus(station), HttpStatus.OK);
     }
 
 }
